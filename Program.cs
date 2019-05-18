@@ -47,7 +47,7 @@ namespace AcosoDNS
                     else
                     {
                         Console.WriteLine("경고! 네트워크 설정에 큰 변동이 있습니다.");
-                        Console.WriteLine("네트워크 어탭터가 설치 또는 제거되었을 수 있습니다.");
+                        Console.WriteLine("네트워크 어댑터가 설치 또는 제거되었을 수 있습니다.");
                     }
                 }
 
