@@ -12,12 +12,18 @@ namespace AcosoDNS
         static string lastError;
         static int lastExitCode;
         static List<WannaCry> lastItems;
+        static List<string> excludedKeys;
 
         static void Main(string[] args)
         {
             Console.WriteLine("=== AcosoDNS ===");
             Console.WriteLine("Monitoring your network configuration...");
 
+            // set exceptions
+            excludedKeys = new List<string>();
+            excludedKeys.Add("임대 만료 날짜");
+
+            // start
             while (true)
             {
                 ExecuteCommand("ipconfig /all");
@@ -28,7 +34,7 @@ namespace AcosoDNS
                     if(lastItems.Count == items.Count) {
                         for (var i = 0; i < lastItems.Count; i++)
                         {
-                            if (lastItems[i].value != items[i].value)
+                            if (lastItems[i].value != items[i].value && excludedKeys.IndexOf(lastItems[i].key) < 0)
                             {
                                 Console.WriteLine("경고! 설정이 변경되었습니다.");
                                 Console.WriteLine("=== 변경 전 ===");
@@ -64,7 +70,7 @@ namespace AcosoDNS
                 int index = line.IndexOf(':');
                 if (index <= 0) continue; // skip empty lines
 
-                string key = line.Substring(0, index).TrimEnd(' ', '.');
+                string key = line.Substring(0, index).Trim(' ', '.');
                 string value = line.Substring(index + 1).Replace("(Preferred)", "").Trim();
 
                 WannaCry item = new WannaCry();
