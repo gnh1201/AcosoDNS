@@ -22,6 +22,7 @@ namespace AcosoDNS
             // set exceptions
             excludedKeys = new List<string>();
             excludedKeys.Add("임대 만료 날짜");
+            excludedKeys.Add("임대 시작 날짜");
 
             // start
             while (true)
