@@ -1,0 +1,7 @@
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\bin\Debug\AcosoDNS.exe.config
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\bin\Debug\AcosoDNS.exe
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\bin\Debug\AcosoDNS.pdb
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\obj\Debug\AcosoDNS.csprojAssemblyReference.cache
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\obj\Debug\AcosoDNS.csproj.CoreCompileInputs.cache
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\obj\Debug\AcosoDNS.exe
+C:\Users\knh94\source\repos\AcosoDNS\AcosoDNS\obj\Debug\AcosoDNS.pdb
