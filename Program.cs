@@ -25,16 +25,23 @@ namespace AcosoDNS
                 
                 if(lastItems != null)
                 {
-                    for (var i = 0; i < lastItems.Count; i++)
-                    {
-                        if (lastItems[i].value != items[i].value)
+                    if(lastItems.Count == items.Count) {
+                        for (var i = 0; i < lastItems.Count; i++)
                         {
-                            Console.WriteLine("경고! 설정이 변경되었습니다.");
-                            Console.WriteLine("=== 변경 전 ===");
-                            Console.WriteLine(string.Format("{0}: {1}", lastItems[i].key, lastItems[i].value));
-                            Console.WriteLine("=== 변경 후 ===");
-                            Console.WriteLine(string.Format("{0}: {1}", items[i].key, items[i].value));
+                            if (lastItems[i].value != items[i].value)
+                            {
+                                Console.WriteLine("경고! 설정이 변경되었습니다.");
+                                Console.WriteLine("=== 변경 전 ===");
+                                Console.WriteLine(string.Format("{0}: {1}", lastItems[i].key, lastItems[i].value));
+                                Console.WriteLine("=== 변경 후 ===");
+                                Console.WriteLine(string.Format("{0}: {1}", items[i].key, items[i].value));
+                            }
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("경고! 네트워크 설정에 큰 변동이 있습니다.");
+                        Console.WriteLine("네트워크 어탭터가 설치 또는 제거되었을 수 있습니다.");
                     }
                 }
 
