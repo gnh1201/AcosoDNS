@@ -6,15 +6,15 @@ using System.Threading;
 
 namespace AcosoDNS
 {
-    class Program
+    public class Program
     {
-        static string lastOutput;
-        static string lastError;
-        static int lastExitCode;
-        static List<WannaCry> lastItems;
-        static List<string> excludedKeys;
+        public static string lastOutput;
+        public static string lastError;
+        public static int lastExitCode;
+        public static List<Gentleman> lastItems;
+        public static List<string> excludedKeys;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("=== AcosoDNS ===");
             Console.WriteLine("Monitoring your network configuration...");
@@ -28,7 +28,7 @@ namespace AcosoDNS
             while (true)
             {
                 ExecuteCommand("ipconfig /all");
-                List<WannaCry> items = getItems();
+                List<Gentleman> items = getItems();
                 
                 if(lastItems != null)
                 {
@@ -58,33 +58,53 @@ namespace AcosoDNS
                 // wait for next process
                 Thread.Sleep(30);
             }
-            
         }
 
-        static List<WannaCry> getItems()
+        public static List<Gentleman> getItems()
         {
-            List<WannaCry> items = new List<WannaCry>();
+            List<Gentleman> items = new List<Gentleman>();
             string[] lines = Regex.Split(lastOutput, "\r\n|\r|\n");
 
+            string lastKey = "";
+            string lastValue = "";
             foreach (var line in lines)
             {
                 int index = line.IndexOf(':');
-                if (index <= 0) continue; // skip empty lines
+                //if (index <= 0) continue;
+                if (line.Trim().Length == 0)
+                {
+                    continue;
+                }
 
-                string key = line.Substring(0, index).Trim(' ', '.');
-                string value = line.Substring(index + 1).Replace("(Preferred)", "").Trim();
+                // detect secondary
+                string key;
+                string value;
+                if (index > -1)
+                {
+                    key = line.Substring(0, index).Trim(' ', '.');
+                    value = line.Substring(index + 1).Replace("(Preferred)", "").Trim();
+                }
+                else
+                {
+                    key = lastKey;
+                    value = line.Trim();
+                }
 
-                WannaCry item = new WannaCry();
+                // add to items
+                Gentleman item = new Gentleman();
                 item.key = key;
                 item.value = value;
-
                 items.Add(item);
+
+                // store to last
+                lastKey = key;
+                lastValue = value;
             }
 
             return items;
         }
 
-        static void ExecuteCommand(string command)
+        public static void ExecuteCommand(string command)
         {
             int exitCode;
             ProcessStartInfo processInfo;

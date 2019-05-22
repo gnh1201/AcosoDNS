@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AcosoDNS
 {
-    public class WannaCry
+    public class Gentleman
     {
         public string key;
         public string value;
